@@ -1,0 +1,18 @@
+{
+  "extends": "../../tsconfig.json",
+  "include": [
+    "../../node_modules/cypress",
+    "../../tests/e2e/**/*.ts",
+    "**/*.ts"
+  ],
+  "exclude": [
+    "../../node_modules"
+  ],
+  "compilerOptions": {
+    "baseUrl": "../../.",
+    "sourceMap": false,
+    "types": [
+      "cypress"
+    ]
+  }
+}

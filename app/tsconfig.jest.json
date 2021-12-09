@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "types": [
+      "webpack-env",
+      "jest"
+    ],
+  "include": [
+    "tests/unit/**/*.ts"
+  ]
+}
