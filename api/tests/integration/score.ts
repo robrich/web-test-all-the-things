@@ -11,11 +11,11 @@ dotenv.config();
 describe('/api/score', () => {
   let app: Application;
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     // FRAGILE: ASSUME: Redis is running and connection is defined in .env or env vars
     app = await appInit();
   });
-  afterEach(async () => {
+  afterAll(async () => {
     if (app) {
       const db: RedisClient = app.get('redis');
       await db.quit();
@@ -57,7 +57,7 @@ describe('/api/score', () => {
     // act
     const res: Response = await request(app)
       .post('/api/score')
-      .send({player})
+      .send({player});
     const score: Score | undefined = res.body as Score | undefined;
 
     // assert

@@ -24,6 +24,17 @@
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
-Cypress.Commands.add('func', (text:string) => {
-  console.log('func');
+Cypress.Commands.add('getNewGame', () => {
+  return cy.get('[data-cy="newGame"]');
+});
+
+Cypress.Commands.add('winForX', () => {
+  // ASSUME: page is loaded and nothing is played yet
+  cy.get('#0').click();
+  cy.get('#1').click();
+  cy.get('#2').click();
+  cy.get('#5').click();
+  cy.get('#4').click();
+  cy.get('#3').click();
+  cy.get('#6').click();
 });

@@ -9,10 +9,12 @@ export default async (): Promise<RedisClient> => {
   // after import dotenv
   const { DBHOST, DBPORT } = process.env;
 
+  const url = `redis://${DBHOST}:${DBPORT}`;
+
   const redisClient = createClient({
-    url: `redis://${DBHOST}:${DBPORT}`
+    url
   }) as unknown as RedisClient;
-  redisClient.on('error', (err: Error) => console.log('Redis Client Error', err));
+  redisClient.on('error', (err: Error) => console.log('Redis Client Error', {url, err}));
   await redisClient.connect();
 
   return redisClient;

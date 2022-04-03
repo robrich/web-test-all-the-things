@@ -1,4 +1,4 @@
-
+// smoke tests
 describe('App.vue', () => {
   const SITE_URL = '/';
 

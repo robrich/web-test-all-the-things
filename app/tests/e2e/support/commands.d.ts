@@ -2,6 +2,7 @@
 
 declare namespace Cypress {
   interface Chainable {
-    func(text: string): Chainable<Element>;
+    getNewGame(): Chainable<Element>;
+    winForX(): void;
   }
 }

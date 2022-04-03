@@ -2,12 +2,12 @@
   <div class="square">
     <div class="content">
       <div class="inner">
-        <div>Leaderboard</div>
+        <div>Leader Board</div>
         <div class="table">
           <div v-for="item in scorelist" :key="item.player">
             <span v-if="item.player === 'tie'">tie</span>
             <i v-else :class="fontAwesomeIcon(item.player)"></i>:
-            <span>{{item.score}}</span>
+            <span :data-cy="item.player+'-score'">{{item.score}}</span>
           </div>
         </div>
         <button @click.stop="clearScores">Clear Scores</button>

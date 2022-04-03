@@ -1,4 +1,5 @@
 module.exports = {
+  transpileDependencies: true,
   outputDir: '../api/dist/public',
   devServer: {
     proxy: {

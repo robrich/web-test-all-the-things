@@ -7,12 +7,12 @@
     </div>
     <div class="flex board">
       <div v-for="s in squares" :key="s.id">
-        <Tile :id="s.id" :value="s.value" :gameOver="gameOver" :win="s.win" @click="tileClick(s)" />
+        <BoardTile :id="s.id" :value="s.value" :gameOver="gameOver" :win="s.win" @click="tileClick(s)" />
       </div>
     </div>
     <div class="flex footer">
       <NewGame :gameOver="gameOver" @click="newGame" />
-      <Leaderboard :scorelist="scorelist" @clear-scores="clearScores" />
+      <LeaderBoard :scorelist="scorelist" @clear-scores="clearScores" />
     </div>
   </div>
 </template>
@@ -20,9 +20,9 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import PlayerTitle from './components/PlayerTitle.vue';
-import Tile from './components/Tile.vue';
+import BoardTile from './components/BoardTile.vue';
 import NewGame from './components/NewGame.vue';
-import Leaderboard from './components/Leaderboard.vue';
+import LeaderBoard from './components/LeaderBoard.vue';
 import { getScores, updateScore, clearScores } from './data/scores';
 import checkWin from './services/check-win';
 import checkStalemate from './services/check-stalemate';
@@ -44,9 +44,9 @@ export default defineComponent({
   name: 'App',
   components: {
     PlayerTitle,
-    Tile,
+    BoardTile,
     NewGame,
-    Leaderboard
+    LeaderBoard
   },
 
   data() {

@@ -1,0 +1,55 @@
+name: Build and Test
+
+on:
+  push:
+    branches:
+    - main
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      redis:
+        image: redis:alpine
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 6379:6379
+
+    steps:
+
+      - uses: actions/checkout@v3
+
+      - name: npm build and test
+        run: |
+          cd api
+          npm install
+          npm run build
+          npm run test
+          cd ..
+
+          cd app
+          npm install --legacy-peer-deps # until merged https://github.com/vuejs/eslint-config-standard/pull/12
+          npm run build
+          npm run test
+          cd ..
+        env:
+          DBHOST: localhost
+          DBPORT: 6379
+
+      - name: test report
+        uses: dorny/test-reporter@v1
+        if: ${{ always() }} # even if tests fail
+        with:
+          name: test report
+          path: api/results/*.xml,app/results/*.xml
+          reporter: java-junit # https://github.com/dorny/test-reporter/issues/154
+
+      # TODO: upload Cypress videos as build artifacts
+      # TODO: deploy

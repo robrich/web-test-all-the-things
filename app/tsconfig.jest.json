@@ -5,6 +5,7 @@
       "jest"
     ],
   "include": [
-    "tests/unit/**/*.ts"
+    "tests/unit/**/*.ts",
+    "tests/api/**/*.ts"
   ]
 }

@@ -1,26 +1,26 @@
 import { mount } from '@vue/test-utils';
-import Leaderboard from '@/components/Leaderboard.vue';
+import LeaderBoard from '@/components/LeaderBoard.vue';
 import { ScoreListItem } from '@/types/score';
 
-describe('/components/Leaderboard.vue', () => {
+describe('/components/LeaderBoard.vue', () => {
 
-  it('should render the Leaderboard when passed an empty array', () => {
+  it('should render the leader board when passed an empty array', () => {
 
     // arrange
     const scorelist: ScoreListItem[] = [];
 
     // act
-    const wrapper = mount(Leaderboard, {
+    const wrapper = mount(LeaderBoard, {
       props: { scorelist }
     });
 
     // assert
     const text = wrapper.text();
-    expect(text).toEqual('LeaderboardClear Scores'); // e.g. no scores
+    expect(text).toEqual('Leader BoardClear Scores'); // e.g. no scores
 
   });
 
-  it('should render the Leaderboard when passed an empty array', () => {
+  it('should render the LeaderBoard when passed a leader list', () => {
 
     // arrange
     const scorelist: ScoreListItem[] = [
@@ -30,7 +30,7 @@ describe('/components/Leaderboard.vue', () => {
     ];
 
     // act
-    const wrapper = mount(Leaderboard, {
+    const wrapper = mount(LeaderBoard, {
       props: { scorelist }
     });
 

@@ -2,18 +2,19 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
-    "esModuleInterop": true,
     "strict": true,
     "jsx": "preserve",
     "importHelpers": true,
     "moduleResolution": "node",
     "noImplicitAny": true,
     "skipLibCheck": true,
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "useDefineForClassFields": true,
     "sourceMap": true,
     "baseUrl": ".",
     "removeComments": true,
-    "forceConsistentCasingInFileNames": true,
     "types": [
       "webpack-env",
       "jest"

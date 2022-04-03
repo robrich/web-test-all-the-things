@@ -1,8 +1,8 @@
 import { mount } from '@vue/test-utils';
-import Tile from '@/components/Tile.vue';
+import BoardTile from '@/components/BoardTile.vue';
 import { Player } from '@/types/player';
 
-describe('/components/Tile.vue', () => {
+describe('/components/BoardTile.vue', () => {
 
   it('should emit click when not done', async () => {
 
@@ -13,7 +13,7 @@ describe('/components/Tile.vue', () => {
     const win = false;
 
     // act
-    const wrapper = mount(Tile, {
+    const wrapper = mount(BoardTile, {
       props: { value, id, gameOver, win }
     });
     await wrapper.find('.square').trigger('click');
@@ -33,7 +33,7 @@ describe('/components/Tile.vue', () => {
     const win = false;
 
     // act
-    const wrapper = mount(Tile, {
+    const wrapper = mount(BoardTile, {
       props: { value, id, gameOver, win }
     });
     await wrapper.find('.square').trigger('click');
@@ -53,7 +53,7 @@ describe('/components/Tile.vue', () => {
     const win = false;
 
     // act
-    const wrapper = mount(Tile, {
+    const wrapper = mount(BoardTile, {
       props: { value, id, gameOver, win }
     });
     await wrapper.find('.square').trigger('click');

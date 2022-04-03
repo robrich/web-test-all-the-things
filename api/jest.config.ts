@@ -1,4 +1,4 @@
-import type {Config} from '@jest/types';
+import type { Config } from '@jest/types';
 
 const config: Config.InitialOptions = {
   verbose: true,
@@ -14,8 +14,8 @@ const config: Config.InitialOptions = {
     }
   },
   reporters: [
-    "default",
-    ["jest-junit", {
+    'default',
+    ['jest-junit', {
       outputDirectory: 'results',
       uniqueOutputName: 'true'
     }]
