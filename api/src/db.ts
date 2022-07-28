@@ -1,5 +1,4 @@
 import { createClient } from 'redis';
-import { RedisClientType } from '@node-redis/client/dist/lib/client';
 import dotenv from 'dotenv';
 import { RedisClient } from './types/redis-client';
 
