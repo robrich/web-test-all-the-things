@@ -1,8 +1,9 @@
 import defaultScore from '../services/score-default';
 import { Player } from '../types/player';
+import { RedisClient } from '../types/redis-client';
 import { Score } from '../types/score';
 
-export async function getScores(db: any): Promise<Score | undefined> {
+export async function getScores(db: RedisClient): Promise<Score | undefined> {
 
   let scores: Score | undefined = undefined;
   const text = await db.get('scores');
@@ -13,7 +14,7 @@ export async function getScores(db: any): Promise<Score | undefined> {
   return scores;
 }
 
-export async function updateScore(db: any, player: Player, diff: number): Promise<Score> {
+export async function updateScore(db: RedisClient, player: Player, diff: number): Promise<Score> {
 
   let scores: Score;
   const text = await db.get('scores');
@@ -28,6 +29,6 @@ export async function updateScore(db: any, player: Player, diff: number): Promis
   return scores;
 }
 
-export async function resetScores(db: any): Promise<void> {
+export async function resetScores(db: RedisClient): Promise<void> {
   await db.del('scores');
 }

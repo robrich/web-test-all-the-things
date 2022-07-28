@@ -19,13 +19,7 @@ describe('/routes/score#del', () => {
 
     // arrange
 
-    const redisMock: RedisClient = createMock<RedisClient>();
-    const req: Request = createMock<Request>({
-      app: {
-        get: (name: string): RedisClient => redisMock
-      }
-    } as Partial<Request>);
-    const res: Response = createMock<Response>();
+    const { req, res } = mockRequestResponse();
 
     scoreMock = ImportMock.mockFunction(scoreData, 'resetScores') as SinonStub<[RedisClient], undefined>;
 
@@ -36,5 +30,18 @@ describe('/routes/score#del', () => {
     expect(scoreMock.called).toBe(true);
 
   });
+
+  function mockRequestResponse(): { req: Request; res: Response } {
+
+    const redisMock: RedisClient = createMock<RedisClient>();
+    const req: Request = createMock<Request>({
+      app: {
+        get: function (name: string) { return redisMock; }
+      }
+    } as Partial<Request>);
+    const res: Response = createMock<Response>();
+
+    return {req, res};
+  }
 
 });

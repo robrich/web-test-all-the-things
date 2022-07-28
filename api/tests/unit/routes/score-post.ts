@@ -23,29 +23,22 @@ describe('/routes/score#post', () => {
     it('should return 400 on invalid player: '+player, async () => {
 
       // arrange
-      let expectedStatus = 400;
+      const expectedStatus = 400;
+      const redisScores: Score | undefined = undefined;
       let resStatus: number = 0;
+      let jsonBody: Score | undefined | {error: string} = undefined;
 
-      const redisMock: RedisClient = createMock<RedisClient>();
-      const req: Request = createMock<Request>({
-        app: {
-          get: function (name: string) { return redisMock; }
-        },
-        body: {
-          player
-        }
-      } as Partial<Request>);
-      const res: Response = createMock<Response>({
-        status: function (status: number) {
-          resStatus = status;
-          return this as Response;
-        }
+      const { req, res } = mockRequestResponse({
+        player,
+        onJsonBody: (body) => {jsonBody = body;},
+        onStatus: (status) => {resStatus = status;}
       });
 
       // act
       await post(req, res);
 
       // assert
+      expect(jsonBody).toStrictEqual({error: 'please set a valid player: x, o, or tie'});
       expect(resStatus).toBe(expectedStatus);
 
     });
@@ -56,7 +49,9 @@ describe('/routes/score#post', () => {
 
     // arrange
     const player: Player = 'x';
-    let resBody: Score | undefined = undefined;
+    const expectedStatus = 0;
+    let jsonBody: Score | undefined | {error: string} = undefined;
+    let resStatus: number = 0;
 
     const redisScores: Score = createMock<Score>();
     scoreMock = ImportMock.mockFunction(scoreData, 'updateScore') as SinonStub<[RedisClient, Player, number], Score>;
@@ -66,6 +61,23 @@ describe('/routes/score#post', () => {
       expect(num).toBe(1);
       return redisScores;
     });
+
+    const { req, res } = mockRequestResponse({
+      player,
+      onJsonBody: (body) => {jsonBody = body;},
+      onStatus: (status) => {resStatus = status;}
+    });
+
+    // act
+    await post(req, res);
+
+    // assert
+    expect(jsonBody).toBe(redisScores);
+    expect(resStatus).toBe(expectedStatus);
+
+  });
+
+  function mockRequestResponse({player, onJsonBody, onStatus}: {player: Player; onJsonBody: (body: Score | undefined | {error: string}) => void; onStatus: (status: number) => void}): { req: Request; res: Response } {
 
     const redisMock: RedisClient = createMock<RedisClient>();
     const req: Request = createMock<Request>({
@@ -78,18 +90,16 @@ describe('/routes/score#post', () => {
     } as Partial<Request>);
     const res: Response = createMock<Response>({
       json: function (body: Score | undefined) {
-        resBody = body;
+        onJsonBody(body);
+        return this as Response;
+      },
+      status: function (status: number) {
+        onStatus(status);
         return this as Response;
       }
     });
 
-    // act
-    await post(req, res);
-    const scores: Score | undefined = resBody;
-
-    // assert
-    expect(scores).toBe(redisScores);
-
-  });
+    return {req, res};
+  }
 
 });

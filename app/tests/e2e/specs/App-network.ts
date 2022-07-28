@@ -52,7 +52,7 @@ describe('App.vue-network', () => {
       actualSaved = true;
       const score: Score = {
         x: 2,
-        y: 3,
+        o: 3,
         tie: 4
       };
       req.reply(score);
@@ -79,7 +79,7 @@ describe('App.vue-network', () => {
       actualSaved = true;
       const score: Score = {
         x: 2,
-        y: 3,
+        o: 3,
         tie: 4
       };
       req.reply(score);

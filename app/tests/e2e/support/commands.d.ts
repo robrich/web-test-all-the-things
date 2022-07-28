@@ -3,6 +3,6 @@
 declare namespace Cypress {
   interface Chainable {
     getNewGame(): Chainable<Element>;
-    winForX(): void;
+    winForX(): Promise<void>;
   }
 }

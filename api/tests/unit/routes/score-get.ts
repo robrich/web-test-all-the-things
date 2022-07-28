@@ -30,27 +30,14 @@ describe('/routes/score#get', () => {
       tie: 15
     };
     const redisScores: undefined = undefined;
-    let resBody: Score | undefined = undefined;
+    let scores: Score | undefined = undefined;
 
-    scoreMock = ImportMock.mockFunction(scoreData, 'getScores', redisScores) as SinonStub<[], Score | undefined>;
-    defaultScoreMock = ImportMock.mockFunction(scoreDefault, 'default', defaults) as SinonStub<[], Score>;
-
-    const redisMock: RedisClient = createMock<RedisClient>();
-    const req: Request = createMock<Request>({
-      app: {
-        get: function (name: string) { return redisMock; }
-      }
-    } as Partial<Request>);
-    const res: Response = createMock<Response>({
-      json: function (body: Score | undefined) {
-        resBody = body;
-        return this as Response;
-      }
-    });
+    setupGetScores(redisScores);
+    setupScoreDefault(defaults);
+    const { req, res } = mockRequestResponse((body) => {scores = body;});
 
     // act
     await get(req, res);
-    const scores: Score | undefined = resBody;
 
     // assert
     expect(scores).toBe(defaults);
@@ -70,31 +57,46 @@ describe('/routes/score#get', () => {
       o: 2,
       tie: 3
     };
-    let resBody: Score | undefined = undefined;
+    let scores: Score | undefined = undefined;
 
-    scoreMock = ImportMock.mockFunction(scoreData, 'getScores', redisScores) as SinonStub<[], Score | undefined>;
-    defaultScoreMock = ImportMock.mockFunction(scoreDefault, 'default', defaults) as SinonStub<[], Score>;
-
-    const redisMock: RedisClient = createMock<RedisClient>();
-    const req: Request = createMock<Request>({
-      app: {
-        get: (name: string): RedisClient => redisMock
-      }
-    } as Partial<Request>);
-    const res: Response = createMock<Response>({
-      json: function (body: Score | undefined) {
-        resBody = body;
-        return this as Response;
-      }
-    });
+    setupGetScores(redisScores);
+    setupScoreDefault(defaults);
+    const { req, res } = mockRequestResponse((body) => {scores = body;});
 
     // act
     await get(req, res);
-    const scores: Score | undefined = resBody;
 
     // assert
     expect(scores).toBe(redisScores);
 
   });
+
+  function mockRequestResponse(onJsonBody: (body: Score | undefined) => void): { req: Request; res: Response } {
+
+    const redisMock: RedisClient = createMock<RedisClient>();
+    const req: Request = createMock<Request>({
+      app: {
+        get: function (name: string) { return redisMock; }
+      }
+    } as Partial<Request>);
+    const res: Response = createMock<Response>({
+      json: function (body: Score | undefined) {
+        onJsonBody(body);
+        return this as Response;
+      }
+    });
+
+    return {req, res};
+  }
+
+  function setupGetScores(redisScores: Score | undefined): SinonStub<[], Score | undefined> {
+    scoreMock = ImportMock.mockFunction(scoreData, 'getScores', redisScores) as SinonStub<[], Score | undefined>;
+    return scoreMock;
+  }
+
+  function setupScoreDefault(defaults: Score): SinonStub<[], Score> {
+    defaultScoreMock = ImportMock.mockFunction(scoreDefault, 'default', defaults) as SinonStub<[], Score>;
+    return defaultScoreMock;
+  }
 
 });
