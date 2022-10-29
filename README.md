@@ -3,7 +3,7 @@ Scaling the Testing Pyramid in JavaScript
 
 [![Build and Test](https://github.com/robrich/web-test-everything/actions/workflows/build-and-test.yaml/badge.svg)](https://github.com/robrich/web-test-everything/actions/workflows/build-and-test.yaml)
 
-This is the companion code to the talk at https://robrich.org/slides/web-test-everything/
+This is the companion code to the talk at https://robrich.org/slides/web-test-all-the-things/
 
 In this talk we look at testing TypeScript Web Apps (PWA / SPA). We examine tests in these categories:
 
