@@ -53,7 +53,7 @@ Usage
    ```sh
    cd app
    npm install
-   npm start
+   npm run serve
    ```
 
 ### Run all the tests:
