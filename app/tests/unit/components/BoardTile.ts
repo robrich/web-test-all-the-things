@@ -29,6 +29,7 @@ describe('/components/BoardTile.vue', () => {
     // arrange
     const gameOver = true;
 
+    // values unimportant, satisfying interface
     const value: Player = undefined;
     const id = 5;
     const win = false;
