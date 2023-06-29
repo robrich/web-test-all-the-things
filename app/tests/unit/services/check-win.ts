@@ -77,7 +77,7 @@ describe('/service/check-win', () => {
   }
 
   function makeSquares(players: Player[]): Square[] {
-    const squares = [];
+    const squares: Square[] = [];
     for (let id = 0; id < players.length; id++) {
       squares.push({ id, value: players[id], win: false });
     }

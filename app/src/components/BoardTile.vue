@@ -1,5 +1,5 @@
 <template>
-  <div class="square" :id="id" @click.stop="clicked">
+  <div class="square" :id="id?.toString()" @click.stop="clicked">
     <div class="piece">
       <i :class="fontAwesomeIcon"></i>
     </div>

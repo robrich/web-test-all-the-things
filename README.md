@@ -1,4 +1,4 @@
-Scaling the Testing Pyramid in JavaScript
+Scaling the Testing Pyramid in TypeScript
 =========================================
 
 [![Build and Test](https://github.com/robrich/web-test-everything/actions/workflows/build-and-test.yaml/badge.svg)](https://github.com/robrich/web-test-everything/actions/workflows/build-and-test.yaml)

@@ -1,4 +1,3 @@
-
 describe('fixture-match-api', () => {
 
   it('should have a fixture with same structure as real api', (done) => {

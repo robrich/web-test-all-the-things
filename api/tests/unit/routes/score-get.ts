@@ -30,17 +30,17 @@ describe('/routes/score#get', () => {
       tie: 15
     };
     const redisScores: undefined = undefined;
-    let scores: Score | undefined = undefined;
+    let actual: Score | undefined = undefined;
 
     setupGetScores(redisScores);
     setupScoreDefault(defaults);
-    const { req, res } = mockRequestResponse((body) => {scores = body;});
+    const { req, res } = mockRequestResponse((body) => {actual = body;});
 
     // act
     await get(req, res);
 
     // assert
-    expect(scores).toBe(defaults);
+    expect(actual).toBe(defaults);
 
   });
 
@@ -57,17 +57,17 @@ describe('/routes/score#get', () => {
       o: 2,
       tie: 3
     };
-    let scores: Score | undefined = undefined;
+    let actual: Score | undefined = undefined;
 
     setupGetScores(redisScores);
     setupScoreDefault(defaults);
-    const { req, res } = mockRequestResponse((body) => {scores = body;});
+    const { req, res } = mockRequestResponse((body) => {actual = body;});
 
     // act
     await get(req, res);
 
     // assert
-    expect(scores).toBe(redisScores);
+    expect(actual).toBe(redisScores);
 
   });
 
@@ -76,9 +76,11 @@ describe('/routes/score#get', () => {
     const redisMock: RedisClient = createMock<RedisClient>();
     const req: Request = createMock<Request>({
       app: {
-        get: function (name: string) { return redisMock; }
+        /* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
+        // @ts-ignore
+        get: function (name: string): RedisClient { return redisMock; }
       }
-    } as Partial<Request>);
+    });
     const res: Response = createMock<Response>({
       json: function (body: Score | undefined) {
         onJsonBody(body);

@@ -10,30 +10,34 @@
     "test": "jest"
   },
   "dependencies": {
-    "dotenv": "^16.0.0",
-    "express": "^4.17.1",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
     "express-promise-router": "^4.1.1",
     "morgan": "^1.10.0",
-    "redis": "^4.0.6"
+    "redis": "^4.6.7"
   },
   "devDependencies": {
-    "@types/express": "^4.17.13",
-    "@types/jest": "^27.4.1",
-    "@types/morgan": "^1.9.3",
-    "@types/node": "^17.0.23",
-    "@types/sinon": "^10.0.11",
+    "@types/express": "^4.17.17",
+    "@types/jest": "^29.5.2",
+    "@types/morgan": "^1.9.4",
+    "@types/node": "^20.3.2",
+    "@types/sinon": "^10.0.15",
     "@types/supertest": "^2.0.12",
-    "eslint": "^8.12.0",
-    "jest": "^27.5.1",
-    "jest-junit": "^13.0.0",
+    "eslint": "^8.43.0",
+    "jest": "^29.5.0",
+    "jest-junit": "^16.0.0",
     "jest-ts-auto-mock": "^2.1.0",
-    "sinon": "^13.0.1",
-    "supertest": "^6.2.2",
-    "ts-auto-mock": "^3.5.0",
-    "ts-jest": "^27.1.4",
+    "sinon": "^15.2.0",
+    "supertest": "^6.3.3",
+    "ts-auto-mock": "~3.6.4",
+    "ts-jest": "^29.1.0",
     "ts-mock-imports": "^1.3.8",
-    "ts-node": "^10.7.0",
+    "ts-node": "^10.9.1",
     "ttypescript": "^1.5.13",
-    "typescript": "^4.6.3"
-  }
+    "typescript": "^4.9.5"
+  },
+  "//": [
+    "latest ts-auto-mock doesn't like that ttypescript -> ttsc, see https://github.com/cevek/ttypescript/issues/140#issuecomment-1488638441",
+    "ts-auto-mock@3 doesn't work with typescript@5"
+  ]
 }

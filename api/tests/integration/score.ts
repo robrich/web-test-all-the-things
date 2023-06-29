@@ -17,6 +17,7 @@ describe('/api/score', () => {
   });
   afterAll(async () => {
     if (app) {
+      // close the database connection, avoids passed tests but suite times out and fails
       const db: RedisClient = app.get('redis');
       await db.quit();
     }

@@ -20,6 +20,7 @@ describe('/components/BoardTile.vue', () => {
 
     // assert
     expect(wrapper.emitted().click.length).toEqual(2); // only called once
+    // event count is off-by-1, bug in @vue/test-utils: https://github.com/vuejs/vue-test-utils/issues/146
 
   });
 

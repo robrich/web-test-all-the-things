@@ -28,6 +28,12 @@ describe('App.vue', () => {
 
   it('should win for x', () => {
 
+    /*
+      'x', 'o', 'x',
+      'o', 'x', 'o',
+      'x', ' ', ' '
+    */
+
     // act
     cy.get('#0').click();
     cy.get('#1').click();
@@ -44,6 +50,12 @@ describe('App.vue', () => {
 
   it('should win for o', () => {
 
+    /*
+      'x', 'o', 'x',
+      ' ', 'o', 'x',
+      'o', ' ', ' '
+    */
+
     // act
     cy.get('#0').click();
     cy.get('#1').click();
@@ -58,6 +70,12 @@ describe('App.vue', () => {
   });
 
   it('should tie', () => {
+
+    /*
+      'x', 'o', 'x',
+      'o', 'x', 'o',
+      'x', 'o', 'x'
+    */
 
     // act
     cy.get('#0').click();

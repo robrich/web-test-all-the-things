@@ -42,7 +42,7 @@ describe('/api/score', () => {
   async function postScores(player: Player): Promise<Score> {
 
     // act
-    const res: AxiosResponse<Score | undefined> = await axios.post<Score | undefined>(`${baseUrl}/api/score`, {player});
+    const res: AxiosResponse<Score | undefined> = await axios.post<Score | undefined>(`${baseUrl}/api/score`, { player });
     const score: Score | undefined = res.data;
 
     // assert
