@@ -28,7 +28,7 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: '19.x'
+          node-version: '24.x'
 
       - name: npm build and test
         run: |

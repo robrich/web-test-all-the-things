@@ -28,6 +28,7 @@ describe('/components/BoardTile.vue', () => {
 
     // arrange
     const gameOver = true;
+    const expected = 1;
 
     // values unimportant, satisfying interface
     const value: Player = undefined;
@@ -41,7 +42,7 @@ describe('/components/BoardTile.vue', () => {
     await wrapper.find('.square').trigger('click');
 
     // assert
-    expect(wrapper.emitted().click.length).toEqual(1); // not called
+    expect(wrapper.emitted().click.length).toEqual(expected); // not called
 
   });
 
@@ -49,6 +50,7 @@ describe('/components/BoardTile.vue', () => {
 
     // arrange
     const value: Player = 'x';
+    const expected = 1;
 
     const id = 5;
     const gameOver = false;
@@ -61,7 +63,7 @@ describe('/components/BoardTile.vue', () => {
     await wrapper.find('.square').trigger('click');
 
     // assert
-    expect(wrapper.emitted().click.length).toEqual(1); // not called
+    expect(wrapper.emitted().click.length).toEqual(expected); // not called
 
   });
 
