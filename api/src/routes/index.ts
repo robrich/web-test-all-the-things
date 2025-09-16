@@ -1,5 +1,4 @@
-import { Request, Response } from 'express';
-import Router from 'express-promise-router';
+import { Request, Response, Router } from 'express';
 import path from 'path';
 import { existsSync } from 'fs';
 

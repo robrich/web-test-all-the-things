@@ -22,6 +22,8 @@ export default defineComponent({
     win: Boolean
   },
 
+  emits: ['click'],
+
   computed: {
 
     fontAwesomeIcon(): string {

@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, PropType } from 'vue';
 import fontAwesomeIconFn from '../services/font-awesome-icon';
 import { ScoreListItem } from '../types/score';
 import { Player, Winner } from '../types/player';
@@ -27,8 +27,10 @@ export default defineComponent({
   inheritAttrs: false, // don't emit click events natively, let me do it
 
   props: {
-    scorelist: Object as () => ScoreListItem[]
+    scorelist: Array as PropType<ScoreListItem[]>
   },
+
+  emits: ['clear-scores'],
 
   methods: {
 
@@ -37,7 +39,7 @@ export default defineComponent({
     },
 
     clearScores() {
-      this.$emit('clearScores');
+      this.$emit('clear-scores');
     }
 
   }

@@ -10,16 +10,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, PropType } from 'vue';
 import fontAwesomeIconFn from '../services/font-awesome-icon';
 import { Player } from '../types/player';
 
 export default defineComponent({
 
   props: {
-    value: String as () => Player,
-    myTurn: Boolean,
-    win: Boolean
+    value: String as PropType<Player>,
+    myTurn: Boolean as PropType<boolean>,
+    win: Boolean as PropType<boolean>
   },
 
   computed: {

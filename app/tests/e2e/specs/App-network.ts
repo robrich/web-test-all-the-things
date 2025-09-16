@@ -1,4 +1,4 @@
-import { Score } from '../../../src/types/Score';
+import { Score } from '../../../src/types/score';
 
 // mock network behaviors
 describe('App.vue-network', () => {

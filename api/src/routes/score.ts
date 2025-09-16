@@ -1,5 +1,4 @@
-import { Request, Response } from 'express';
-import Router from 'express-promise-router';
+import { Request, Response, Router } from 'express';
 import { getScores, updateScore, resetScores } from '../data/score';
 import defaultScore from '../services/score-default';
 import { Player, players } from '../types/player';
@@ -11,7 +10,7 @@ const router = Router();
 router.get('/', get);
 export async function get(req: Request, res: Response) {
   const db: RedisClient = req.app.get('redis');
-  const scores: Score = await getScores(db) ?? defaultScore();
+  const scores: Score = (await getScores(db)) ?? defaultScore();
   res.json(scores);
 }
 

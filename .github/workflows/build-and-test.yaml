@@ -22,16 +22,22 @@ jobs:
         ports:
           - 6379:6379
 
+    env:
+      DBHOST: localhost
+      DBPORT: 6379
+
     steps:
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: '24.x'
 
       - name: npm build and test
         run: |
+          set -e
+
           cd api
           npm install
           npm run build
@@ -39,7 +45,7 @@ jobs:
           cd ..
 
           cd app
-          npm install --legacy-peer-deps # until merged https://github.com/vuejs/eslint-config-standard/pull/12
+          npm install
           npm run build
           npm run test
           cd ..
@@ -52,8 +58,25 @@ jobs:
         if: ${{ always() }} # even if tests fail
         with:
           name: test report
-          path: api/results/*.xml,app/results/*.xml
+          path: |
+            api/results/*.xml
+            app/results/*.xml
           reporter: java-junit # https://github.com/dorny/test-reporter/issues/154
 
-      # TODO: upload Cypress videos as build artifacts
+      - name: Upload Cypress videos
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-videos
+          path: app/results/videos
+          if-no-files-found: ignore
+
+      - name: Upload Cypress screenshots
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-screenshots
+          path: app/results/screenshots
+          if-no-files-found: ignore
+
       # TODO: deploy

@@ -30,5 +30,5 @@ export async function updateScore(db: RedisClient, player: Player, diff: number)
 }
 
 export async function resetScores(db: RedisClient): Promise<void> {
-  await db.del('scores');
+  await db.delete('scores');
 }

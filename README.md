@@ -26,19 +26,18 @@ We explore these NPM packages:
 
 - [vue](https://npmjs.org/vue)
 - [typescript](https://npmjs.org/typescript)
-- [jest](https://npmjs.org/jest)
+- [vitest](https://npmjs.org/vitest)
 - [supertest](https://npmjs.org/supertest)
 - [cypress](https://npmjs.org/cypress)
-- [ts-auto-mock](https://npmjs.org/ts-auto-mock)
-- [ts-mock-imports](https://npmjs.org/ts-mock-imports)
 - [start-server-and-test](https://npmjs.org/start-server-and-test)
 
 Usage
 -----
 
+
 ### Run the website:
 
-1. Start redis in docker by running `docker-compose up`
+1. Start Redis in Docker by running `docker-compose up`
 
 2. Start api by running this from a terminal:
 
@@ -48,23 +47,26 @@ Usage
    npm start
    ```
 
+   then browse to http://localhost:3000/
+
 3. Start the vue app by running this from a terminal:
 
    ```sh
    cd app
    npm install
-   npm run serve
+   npm run dev
    ```
+
 
 ### Run all the tests:
 
-1. Start redis in docker by running `docker-compose up`
+1. Start Redis in Docker by running `docker-compose up`
 
 2. Don't start the app or api, and kill them if they're running
 
 3. From a terminal run this:
 
-   ```js
+   ```sh
    cd api
    npm run test
    cd ..
@@ -74,6 +76,28 @@ Usage
    ```
 
 See also the GitHub Actions build file in `.github/workflows/build-and-test.yaml`
+
+
+### Run Cypress tests interactively
+
+Cypress is configured with `cypress.config.ts` (v10+). To run locally with the app auto-started:
+
+1. Start Redis in Docker by running `docker compose up`
+
+2. Start the api
+
+   ```sh
+   cd api
+   npm run start
+   ```
+
+3. Cypress starts the app
+
+   ```sh
+   cd app
+   npm run cy:open
+   ```
+
 
 License
 -------

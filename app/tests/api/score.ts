@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import dotenv from 'dotenv';
 import axios, { AxiosResponse } from 'axios';
 import { Player } from '../../src/types/player';
@@ -5,8 +6,8 @@ import { Score } from '../../src/types/score';
 
 dotenv.config();
 
-const baseUrl = process.env.API_BASE_URL || 'http://localhost:3000';
-// TODO: trim trailing slash if needed
+const baseUrl = (process.env.API_BASE_URL || 'http://localhost:3000')
+  .replace(/\/$/, ''); // trim trailing slash
 
 describe('/api/score', () => {
 

@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, PropType } from 'vue';
 
 export default defineComponent({
 
@@ -27,8 +27,10 @@ export default defineComponent({
   },
 
   props: {
-    gameOver: Boolean
+    gameOver: Boolean as PropType<boolean>
   },
+
+  emits: ['click'],
 
   methods: {
 

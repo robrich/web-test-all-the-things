@@ -16,8 +16,8 @@
     "baseUrl": ".",
     "removeComments": true,
     "types": [
-      "webpack-env",
-      "jest"
+      "vitest/globals",
+      "vite/client"
     ],
     "paths": {
       "@/*": [
@@ -39,7 +39,6 @@
     "tests/**/*.tsx"
   ],
   "exclude": [
-    "node_modules",
-    "tests/**/*.ts"
+    "node_modules"
   ]
 }
