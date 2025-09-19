@@ -58,9 +58,7 @@ jobs:
         if: ${{ always() }} # even if tests fail
         with:
           name: test report
-          path: |
-            api/results/*.xml
-            app/results/*.xml
+          path: api/results/*.xml,app/results/*.xml
           reporter: java-junit # https://github.com/dorny/test-reporter/issues/154
 
       - name: Upload Cypress videos

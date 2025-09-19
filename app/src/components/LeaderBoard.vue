@@ -4,7 +4,7 @@
       <div class="inner">
         <div>Leader Board</div>
         <div class="table">
-          <div v-for="item in scorelist" :key="item.player">
+          <div v-for="item in scorelist" :key="item.player" :data-cy="'score'+item.player">
             <span v-if="item.player === 'tie'">tie</span>
             <i v-else :class="fontAwesomeIcon(item.player)"></i>:
             <span :data-cy="item.player+'-score'">{{item.score}}</span>

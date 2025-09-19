@@ -22,7 +22,9 @@ export default async function init(): Promise<Application> {
 
   app.use('/api/score', scoreRouter);
 
-  app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+  // Error handlers must have 4 parameters
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  app.use((err: Error, req: Request, res: Response, _next: NextFunction) => {
     console.log(`Error processing ${req.url}`, err);
     res.status(500).send({error: true});
   });

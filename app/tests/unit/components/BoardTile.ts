@@ -42,7 +42,7 @@ describe('/components/BoardTile.vue', () => {
     await wrapper.find('.square').trigger('click');
 
     // assert
-    expect(wrapper.emitted().click).toEqual(undefined);
+    expect(wrapper.emitted().click).toEqual(expected);
 
   });
 

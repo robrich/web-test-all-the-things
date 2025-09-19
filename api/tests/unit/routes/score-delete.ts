@@ -30,6 +30,7 @@ describe('/routes/score#delete', () => {
     const redisMock = {} as RedisClient;
     const req = {
       app: {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         get: function (_name: string): RedisClient { return redisMock; }
       }
     } as Partial<Request>;

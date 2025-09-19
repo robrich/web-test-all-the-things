@@ -7,7 +7,8 @@
     "build": "tsc",
     "prestart": "npm run build",
     "start": "node dist/index",
-    "test": "vitest run"
+    "test": "vitest run",
+    "lint": "eslint --fix"
   },
   "dependencies": {
     "dotenv": "^17.2.2",
@@ -16,14 +17,18 @@
     "redis": "^5.8.2"
   },
   "devDependencies": {
+    "@eslint/js": "^9.35.0",
     "@types/express": "^5.0.3",
     "@types/morgan": "^1.9.10",
     "@types/node": "^24.5.0",
     "@types/sinon": "^17.0.4",
     "@types/supertest": "^6.0.3",
     "eslint": "^9.35.0",
+    "globals": "^16.4.0",
+    "jiti": "^2.5.1",
     "supertest": "^7.1.4",
     "typescript": "^5.9.2",
+    "typescript-eslint": "^8.44.0",
     "vitest": "^3.2.4"
   }
 }

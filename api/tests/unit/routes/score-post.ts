@@ -79,6 +79,7 @@ describe('/routes/score#post', () => {
     const redisMock = {} as RedisClient;
     const req = {
       app: {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         get: function (_name: string) { return redisMock; }
       },
       body: {

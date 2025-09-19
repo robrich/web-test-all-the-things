@@ -8,7 +8,7 @@ const index = path.join(dir, 'index.html');
 const exists = existsSync(index);
 const isProd = process.env.NODE_ENV === 'production';
 
-router.get('/', function(req: Request, res: Response) {
+router.get('/', function (req: Request, res: Response) {
   if (!isProd && !exists) {
     // so start-server-and-test knows the api is running
     res.send('<h1>Tic Tac Toe</h1><p>This page is replaced with the game in production.</p>');

@@ -17,4 +17,4 @@ export default async (): Promise<RedisClient> => {
   await redisClient.connect();
 
   return redisClient;
-}
+};
