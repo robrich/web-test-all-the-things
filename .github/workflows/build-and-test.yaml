@@ -45,7 +45,9 @@ jobs:
           cd ..
 
           cd app
-          npm install
+          # until @vue/eslint-config-standard depends on eslint@10
+          # https://github.com/vuejs/eslint-config-standard/issues/83
+          npm install --legacy-peer-deps
           npm run build
           npm run test
           cd ..

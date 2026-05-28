@@ -1,24 +1,19 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "module": "commonjs",
+    "module": "NodeNext",
     "esModuleInterop": true,
     "strict": true,
-    "moduleResolution": "node",
+    "moduleResolution": "nodenext",
     "noImplicitAny": true,
     "skipLibCheck": true,
     "sourceMap": true,
     "outDir": "dist",
-    "baseUrl": ".",
+    "rootDir": "src",
     "removeComments": true,
-    "forceConsistentCasingInFileNames": true,
-    "paths": {
-      "*": [
-        "node_modules/*"
-      ]
-    }
+    "forceConsistentCasingInFileNames": true
   },
-  "lib": ["es2015"],
+  "lib": ["esnext"],
   "include": [
     "src/**/*"
   ],

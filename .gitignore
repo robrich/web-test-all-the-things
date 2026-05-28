@@ -1,7 +1,12 @@
-.DS_Store
+# downloaded files
 node_modules
+# built files
 dist
 results
+# user-specific files
 package-lock.json
+# temp files
+.DS_Store
 redis-data
-.node-version
+# secrets
+.env
